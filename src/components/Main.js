@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Main = () => {
     return(
 <div>
-  Hello
+ Landing Page
 </div>
     )
     
