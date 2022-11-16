@@ -1,32 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Login = () => {
+  const[username, setUsername]= useState("")
+  const[password,setPassword]= useState("")
+
+  
+
+
+  console.log(username, password)
   return (
     <div id="loginpage" className="container">
       <div className="row">
         <form>
           <div className="mb-3">
-            <label for="exampleInputEmail1" className="col-form-label">
-              Email address
+            <label htmlFor="username" className="col-form-label">
+              Username
             </label>
             <input
-              type="email"
+              type="text"
               className="col-form-control"
-              id="exampleInputEmail1"
+              id="username"
               aria-describedby="emailHelp"
+              value={username}
+              onChange={(event)=> setUsername(event.target.value)}
             />
-            <div id="emailHelp" className="form-text">
-              We'll never share your email with anyone else.
-            </div>
+            
           </div>
           <div className="mb-3">
-            <label for="exampleInputPassword1" className="col-form-label">
+            <label htmlFor="password" className="col-form-label">
               Password
             </label>
             <input
               type="password"
               className="col-form-control"
-              id="exampleInputPassword1"
+              id="password"
+              value={password}
+              onChange={(event)=> setPassword(event.target.value)}
             />
           </div>
           <div className="mb-3 form-check">
@@ -35,8 +44,8 @@ const Login = () => {
               className="form-check-input"
               id="exampleCheck1"
             />
-            <label className="form-check-label" for="exampleCheck1">
-              Check me out
+            <label className="form-check-label" htmlFor="exampleCheck1">
+              Remember Me
             </label>
           </div>
           <button type="submit" className="btn btn-primary">
