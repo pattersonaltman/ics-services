@@ -74,7 +74,6 @@ const {username, password, firstname, lastname, email, phone,dob} = user
         <div className="form-group col-md-6">
           <label htmlFor="phone">Phone Number</label>
           <input
-            // country={'us'}
             type="text"
             className="form-control"
             id="phone"
