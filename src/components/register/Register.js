@@ -1,17 +1,44 @@
-import React from "react";
-import { useState } from "react";
+import React , { useEffect, useState } from "react";
 import PhoneInput from 'react-phone-input-2'
+import axios from "axios";
+import { useNavigate, useParams } from "react-router-dom";
 
 const Register = () => {
+  const baseUrl = "http://localhost:8080/api/user/"
   const [user, setUser] = useState({});
+const navigate = useNavigate()
+const {id} = useParams()
+
+useEffect(() => {
+  if(id){
+    const fetchData = async () =>{
+      const userData = await axios.get(baseUrl + id)
+      setUser(userData)
+     }
+     fetchData()
+  }
+
+}, []);
 
   const handleChange = (event) => {
     const { id, value } = event.target;
     setUser({ ...user, [id]: value });
   };
+
+ const handleSubmit = (event) => {
+event.preventDefault();
+if(id){
+   axios.put(baseUrl + id, user).then(() => navigate(baseUrl + id)).catch(error => console.log(error))
+} else {
+  axios.post(baseUrl, user)
+}
+
+ }
+
+// console.log(user)
 const {username, password, firstname, lastname, email, phone,dob} = user
   return (
-    <form className="container">
+    <form className="container" onSubmit={handleSubmit}>
       <div className="form-row">
         <div className="form-group col-md-6">
           <label htmlFor="username">Username</label>
@@ -93,11 +120,13 @@ const {username, password, firstname, lastname, email, phone,dob} = user
             value={dob}
             onChange={handleChange}
           />
+      
         </div>
      
-
+       <br/>
       <button type="submit" className="btn btn-primary">
-        Sign in
+      
+       Sign Up
       </button>
     </form>
   );

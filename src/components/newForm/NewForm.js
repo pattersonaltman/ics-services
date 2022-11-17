@@ -1,11 +1,10 @@
 import React , { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { serviceData } from "../../util/ServiceData";
 
-const Services = () => {
-
-  const baseUrl = "http://localhost:8080/api/user/"
+const NewForm = () => {
+ 
+    const baseUrl = "http://localhost:8080/api/user/"
   const [service, setService] = useState({});
 const navigate = useNavigate()
 const {id} = useParams()
@@ -52,48 +51,28 @@ const {name, type, price} = service
             onChange={handleChange}
           />
         </div>
-      
         <div class="mb-3">
-        <label for="" class="form-label">Internet</label>
+        <label for="" class="form-label">City</label>
         <select class="form-select form-select-lg" name="" id="">
             <option selected>Select one</option>
-            <option value="Basic">Basic</option>
-            <option value="Advance">Advance</option>
-            <option value="High Speed">High Speed</option>
-            <option value="Ultra-High Speed">Ultra-High Speed</option>
-        </select>
-        </div>
-        <div class="mb-3">
-        <label for="" class="form-label">Cable</label>
-        <select class="form-select form-select-lg" name="" id="">
-            <option selected>Select one</option>
-            <option value="Basic">Basic</option>
-            <option value="Extra">Extra</option>
-            <option value="Premium">Premium</option>
-            <option value="VIP">VIP</option>
+            <option value="">New Delhi</option>
+            <option value="">Istanbul</option>
+            <option value="">Jakarta</option>
         </select>
      </div>
-     <h3>Select Services</h3>
-     {serviceData.map(({ name, type, price }, index) => {
-          return (
-            <div key={index}>
-              <div className="toppings-list-item">
-                <div className="left-section">
-                  <input
-                    type="checkbox"
-                    id={index}
-                    name={name}
-                    value={name}
-                  />
-                  {" "}
-           <label htmlFor={index}>{name}</label>
-                </div>
-                {/* <div className="right-section">{price}</div> */}
-              </div>
-            </div>
-          )
-        })}
+        <div className="form-group col-md-6">
+          <label htmlFor="price">Price</label>
+          <input
+            type="number"
+            className="form-control"
+            id="price"
+            placeholder="price"
+            value={price}
+            onChange={handleChange}
+          />
         </div>
+        </div>
+     
        <br/>
       <button type="submit" className="btn btn-primary">
       Submit
@@ -103,4 +82,4 @@ const {name, type, price} = service
   )
 }
 
-export default Services
+export default NewForm
