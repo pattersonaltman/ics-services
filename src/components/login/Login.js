@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import ServiceAPI from "../../util/ServiceAPI"
 
 const Login = () => {
-  // const[username, setUsername]= useState("")
-  // const[password,setPassword]= useState("")
+  
+  
   const[userLogin,setUserLogin]= useState({})
   
   const handleChange = (event) => {
@@ -10,13 +11,26 @@ const Login = () => {
     setUserLogin({ ...userLogin, [id]: value });
   };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+    ServiceAPI.login(userLogin)
+
+    } catch (error) {
+      console.log(error.msg);
+    
+    }
+  };
+
+
+
 
   console.log(userLogin)
   const {username,password} = userLogin
   return (
     <div id="loginpage" className="container">
       <div className="row">
-        <form>
+        <form onSubmit={ handleSubmit}>
           <div className="mb-3">
             <label htmlFor="username" className="col-form-label">
               Username
