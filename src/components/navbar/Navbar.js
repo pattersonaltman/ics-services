@@ -22,7 +22,7 @@ const Navbar = () =>  {
                          id='navbarNavAltMarkup'>
                         <div className='navbar-nav'>
 
-                            <Link className='nav-link' to='/view'>Services</Link>
+                            <Link className='nav-link' to='/services'>Services</Link>
 
                             <Link className='nav-link' to='/add'>Add Service</Link>
 

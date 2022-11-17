@@ -10,6 +10,7 @@ import Services from './components/services/Services';
 import Register from './components/register/Register';
 import ServiceDetails from './components/serviceDetails/ServiceDetails';
 import ServiceCard from './components/serviceCard/ServiceCard';
+import NewForm from './components/newForm/NewForm';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
   <Route path="/login" element={<Login/>}></Route>
   <Route path="/register" element={<Register/>}></Route>
   <Route path="/services" element={<Services/>}></Route>
+  <Route path="/add" element={<NewForm />}></Route>
   <Route path="/services/:id" element={<ServiceDetails/>}></Route>
   <Route path="/servicecard" element={<ServiceCard/>}></Route>
  </Routes>
