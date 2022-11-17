@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 
 const Login = () => {
-  const[username, setUsername]= useState("")
-  const[password,setPassword]= useState("")
-
+  // const[username, setUsername]= useState("")
+  // const[password,setPassword]= useState("")
+  const[userLogin,setUserLogin]= useState({})
   
+  const handleChange = (event) => {
+    const { id, value } = event.target;
+    setUserLogin({ ...userLogin, [id]: value });
+  };
 
 
-  console.log(username, password)
+  console.log(userLogin)
+  const {username,password} = userLogin
   return (
     <div id="loginpage" className="container">
       <div className="row">
@@ -22,7 +27,7 @@ const Login = () => {
               id="username"
               aria-describedby="emailHelp"
               value={username}
-              onChange={(event)=> setUsername(event.target.value)}
+              onChange={handleChange}
             />
             
           </div>
@@ -35,7 +40,7 @@ const Login = () => {
               className="col-form-control"
               id="password"
               value={password}
-              onChange={(event)=> setPassword(event.target.value)}
+              onChange={handleChange}
             />
           </div>
           <div className="mb-3 form-check">
