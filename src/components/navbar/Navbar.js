@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-const Navbar = () =>  {
+const Navbar = ({isAuth}) =>  {
 
         return (
           <header>
@@ -18,7 +18,7 @@ const Navbar = () =>  {
                         <span className='navbar-toggler-icon'></span>
                     </button>
                     
-                    <div className='collapse navbar-collapse'
+                   <div className='collapse navbar-collapse'
                          id='navbarNavAltMarkup'>
                         <div className='navbar-nav'>
 
@@ -29,7 +29,7 @@ const Navbar = () =>  {
                         </div>
                     
                     </div>
-                    <div className='collapse navbar-collapse'
+                     <div className='collapse navbar-collapse'
                          id='navbarNavAltMarkup'>
                         <div className='navbar-nav'>
 

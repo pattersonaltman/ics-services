@@ -1,5 +1,5 @@
 import React , { useEffect, useState } from "react";
-import PhoneInput from 'react-phone-input-2'
+import ServiceAPI from "../../util/ServiceAPI"
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -12,13 +12,14 @@ const {id} = useParams()
 useEffect(() => {
   if(id){
     const fetchData = async () =>{
-      const userData = await axios.get(baseUrl + id)
-      setUser(userData)
+     const  userData =  await axios.get(baseUrl + id)
+     setUser(userData)
      }
-     fetchData()
-  }
+     
+      fetchData()
+   }
 
-}, []);
+}, [user]);
 
   const handleChange = (event) => {
     const { id, value } = event.target;
@@ -28,15 +29,15 @@ useEffect(() => {
  const handleSubmit = (event) => {
 event.preventDefault();
 if(id){
-   axios.put(baseUrl + id, user).then(() => navigate(baseUrl + id)).catch(error => console.log(error))
+  ServiceAPI.register(user)
 } else {
-  axios.post(baseUrl, user)
+  ServiceAPI.register(user)
 }
 
  }
 
 // console.log(user)
-const {username, password, firstname, lastname, email, phone,dob} = user
+const {username, password, firstName, lastName, email, phone,dob} = user
   return (
     <form className="container" onSubmit={handleSubmit}>
       <div className="form-row">
@@ -63,24 +64,24 @@ const {username, password, firstname, lastname, email, phone,dob} = user
           />
         </div>
         <div className="form-group col-md-6">
-          <label htmlFor="firstname">First Name</label>
+          <label htmlFor="firstName">First Name</label>
           <input
             type="text"
             className="form-control"
-            id="firstname"
+            id="firstName"
             placeholder="First Name"
-            value={firstname}
+            value={firstName}
             onChange={handleChange}
           />
         </div>
         <div className="form-group col-md-6">
-          <label htmlFor="lastname">Last Name</label>
+          <label htmlFor="lastName">Last Name</label>
           <input
             type="text"
             className="form-control"
-            id="lastname"
+            id="lastName"
             placeholder="Last Name"
-            value={lastname}
+            value={lastName}
             onChange={handleChange}
           />
         </div>

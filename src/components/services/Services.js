@@ -13,7 +13,7 @@ const {id} = useParams()
 useEffect(() => {
   if(id){
     const fetchData = async () =>{
-      const serviceData = await axios.get(baseUrl + id)
+      const serviceData =  await axios.get(baseUrl + id)
       setService(serviceData)
      }
      fetchData()
