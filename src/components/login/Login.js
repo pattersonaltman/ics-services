@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ServiceAPI from "../../util/ServiceAPI"
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom"
+import { authenticateUser } from "../../redux/slices/authSlice";
 
-const Login = () => {
-  
-  
+const Login = ({setIsAuth}) => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   const[userLogin,setUserLogin]= useState({})
   
   const handleChange = (event) => {
@@ -11,15 +14,32 @@ const Login = () => {
     setUserLogin({ ...userLogin, [id]: value });
   };
 
+  const userAuthFromLocalStorage = () => {
+    const isAuth = localStorage.getItem('isAuth')
+  
+    if (isAuth && JSON.parse(isAuth) === true) {
+      return true
+    }
+    return false
+  }
+ 
+    setIsAuth(userAuthFromLocalStorage())
+  
+ 
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
     ServiceAPI.login(userLogin)
 
+    dispatch(authenticateUser());
+      
+
     } catch (error) {
       console.log(error.msg);
     
     }
+    navigate("/")
   };
 
 

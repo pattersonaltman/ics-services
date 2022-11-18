@@ -24,13 +24,51 @@ const ServiceAPI = {
 
                 if(typeof data.jwt !== 'undefined') {
 
-                    console.log(data);
-
+                  
+                    sessionStorage.setItem("jwt", data.jwt);
+                    
+                    localStorage.setItem("isAuth", "true");
                     alert(`User login \n` 
                     )
                 }
                 else {
-                    alert("not login" + data.message)
+                    localStorage.setItem("isAuth", "false");
+                }
+
+            } )
+            .catch( error => { 
+                console.log(error);
+            } )
+
+    },
+
+
+    register: (user) => {
+        alert (JSON.stringify(user))
+        fetch(BASE + "/api/user", {
+            method: "POST",
+            body: JSON.stringify(user),
+            headers: { "Content-Type": "application/json" }
+        })
+            .then( result => result.json() )
+            .then( data => {
+
+                if(typeof data.id !== 'undefined') {
+
+                    console.log("CREATED USER:");
+                    console.log(data);
+
+                    alert(`USER CREATED \n` +
+                        `------------------------\n` + 
+                        `ID: ${data.id}\n` +
+                        `First Name: ${data.firstName}\n` +
+                        `Last Name: ${data.lastName}\n` +
+                        `Email: ${data.email}\n` 
+                       
+                    )
+                }
+                else {
+                    alert("User can't be created, check that you are not using an email already in use by another user.")
                 }
 
             } )

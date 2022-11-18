@@ -8,17 +8,17 @@ const NewForm = () => {
   const [service, setService] = useState({});
 const navigate = useNavigate()
 const {id} = useParams()
-
 useEffect(() => {
   if(id){
-    const fetchData = async () =>{
-      const serviceData = await axios.get(baseUrl + id)
-      setService(serviceData)
-     }
-     fetchData()
+     const fetchData = async () =>{
+     const  serviceData = await axios.get(baseUrl + id)
+       setService(serviceData)
+      
+      }
+      fetchData()
   }
 
-}, []);
+}, [service]);
 
   const handleChange = (event) => {
     const { id, value } = event.target;
