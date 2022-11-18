@@ -1,8 +1,11 @@
 
 import './App.css';
+
 import React , {useState}from 'react';
 import Main from './components/Main';
 import { Routes, Route, Outlet, Navigate } from 'react-router-dom';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
 import Navbar from './components/navbar/Navbar';
 import Login from './components/login/Login';
 import Services from './components/services/Services';
@@ -16,19 +19,37 @@ import NewForm from './components/newForm/NewForm';
 
 function App() {
   const [isAuth, setIsAuth] = useState(false)
+  const [toggleDark, settoggleDark] = useState(false);
+
+  const darkTheme = createTheme({
+    palette: {
+      mode: toggleDark ? "dark" : "light",
+    },
+  });
+
+  const handleModeChange = () => {
+    settoggleDark(!toggleDark);
+  };
+
   const PrivateRoutes = () => {
- 
-  
 return <>{isAuth ? <Outlet /> : <Navigate to="/login" />}</>
 }
 
 const RestrictedRoutes = () => {
-
   return <>{!isAuth ? <Outlet /> : <Navigate to="/services" />}</>
   }
   return (
+    <ThemeProvider theme={darkTheme}>
+    
+
+    
+
     <div className="App">
-   <Navbar setIsAuth={setIsAuth}/>
+   <Navbar setIsAuth={setIsAuth} 
+   toggleDark={toggleDark} 
+   settoggleDark={settoggleDark}
+   handleModeChange={handleModeChange}
+   />
  <Routes>
   <Route path="/" element={<Main/>}></Route>
 
@@ -50,6 +71,7 @@ const RestrictedRoutes = () => {
   <Route path="/servicecard" element={<ServiceCard/>}></Route>
  </Routes>
     </div>
+    </ThemeProvider>
   );
 }
 

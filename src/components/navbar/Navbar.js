@@ -1,10 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-const Navbar = ({isAuth}) =>  {
+import { Switch } from '@mui/material';
+import CssBaseline from '@mui/material/CssBaseline';
+const Navbar = ({isAuth, toggleDark, settoggleDark, handleModeChange}) =>  {
 
         return (
           <header>
-            <h1 className="display-2">ICS-Services</h1>
+             
+            <Switch
+            checked={toggleDark}
+            onChange={handleModeChange}
+            name="toggleDark"
+            color="default"
+          />
+          <CssBaseline />
+          <h1 className="display-2" style={{display:"inline"}}>ICS-Services</h1>
+           
+            
 
             <nav className='navbar navbar-expand-lg bg-light'>
                 <div className='container-fluid'>

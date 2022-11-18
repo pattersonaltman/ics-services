@@ -76,7 +76,52 @@ const ServiceAPI = {
                 console.log(error);
             } )
 
-    }
+    },
+    getAll: (setUserList) => {
+
+        fetch(BASE + "/api/services")
+            .then( result => result.json() )
+            .then( data => {
+                setUserList(data)
+                console.log(data)
+            } )
+            .catch( error => { console.log(error) } )
+    },
+
+    addService: (serviceid) => {
+       
+        fetch(BASE + "/api/orders/checkout2", {
+            method: "POST",
+            body: JSON.stringify(serviceid),
+            headers: { "Content-Type": "application/json" }
+        })
+            .then( result => result.json() )
+            .then( data => {
+
+                if(typeof data.id !== 'undefined') {
+
+                    console.log("CREATED USER:");
+                    console.log(data);
+
+                    alert(`USER CREATED \n` +
+                        `------------------------\n` + 
+                        `ID: ${data.id}\n` +
+                        `First Name: ${data.firstName}\n` +
+                        `Last Name: ${data.lastName}\n` +
+                        `Email: ${data.email}\n` 
+                       
+                    )
+                }
+                else {
+                    alert("User can't be created, check that you are not using an email already in use by another user.")
+                }
+
+            } )
+            .catch( error => { 
+                console.log(error);
+            } )
+
+    },
 
 }
 

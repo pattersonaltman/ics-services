@@ -1,8 +1,15 @@
-import React from 'react'
+import React, {useEffect}from 'react'
+import ServiceAPI from "../../util/ServiceAPI"
+const ServiceCard = ({optionSelected}) => {
 
-const ServiceCard = () => {
+  useEffect(() => {
+    ServiceAPI.addService()
+  },[])
   return (
-    <div>ServiceCard</div>
+    <div>
+
+
+    </div>
   )
 }
 
